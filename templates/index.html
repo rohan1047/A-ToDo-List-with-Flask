@@ -7,24 +7,27 @@
 </head>
 <body>
     <h1>Yokoso</h1>
-    <form method="POST" action="{{ url_for('complete_tasks') }}">
     <ul>
         {% for t in tasks %}
             <li>
-                <input type="checkbox"
-                    name="taskCheckbox"
-                    value="{{ loop.index0 }}"
-                    {% if t.completed %}checked{% endif %}>
-                {{ t.name }}
+                <form method="POST" action="{{ url_for('complete_tasks') }}" style="display:inline;">
+                    <input type="checkbox"
+                        name="taskCheckbox"
+                        value="{{ loop.index0 }}"
+                        {% if t.completed %}checked{% endif %}
+                        onchange="this.form.submit()">
+                    {{ t.name }}
+                </form>
+                <form method="POST" action="{{ url_for('delete_task', index=loop.index0) }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
             </li>
         {% endfor %}
     </ul>
-    <button type="submit">Mark Completed</button>
-    </form>
     <form method="POST" action="{{ url_for('add_task') }}">
-    <label for="newTask">Add Task:</label>
-    <input type="text" id="newTask" name="newTask" required>
-    <button type="submit">Add</button>
-</form>
+        <label for="newTask">Add Task:</label>
+        <input type="text" id="newTask" name="newTask" required>
+        <button type="submit">Add</button>
+    </form>
 </body>
 </html>

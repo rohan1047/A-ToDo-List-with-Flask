@@ -29,6 +29,12 @@ def complete_tasks():
         task[index]["completed"] = True
     return redirect(url_for('index'))
 
+@app.route('/delete/<int:index>', methods=['POST'])
+def delete_task(index):
+    if 0 <= index < len(task):
+        task.pop(index)
+    return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
