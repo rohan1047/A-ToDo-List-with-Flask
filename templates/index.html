@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Yokoso</h1>
+    <form method="POST" action="{{ url_for('complete_tasks') }}">
     <ul>
         {% for t in tasks %}
             <li>
@@ -18,8 +19,7 @@
             </li>
         {% endfor %}
     </ul>
-    <form method="POST" action="{{ url_for('complete_tasks') }}">
-        <button type="submit">Mark Completed</button>
+    <button type="submit">Mark Completed</button>
     </form>
     <form method="POST" action="{{ url_for('add_task') }}">
     <label for="newTask">Add Task:</label>
